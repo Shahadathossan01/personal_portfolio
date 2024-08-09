@@ -52,12 +52,11 @@ const dataSchema=new Schema({
         fbLink:String,
         linkedinLink:String,
         gitHubLink:String,
-        contactList:[{
-            name:String,
-            email:String,
-            message:String
-        }]
     },
+    contactList:[{
+        type:Schema.Types.ObjectId,
+        ref:"ContactList"
+    }],
     testimonials:[],
     certifications:[],
     page_not_found:{

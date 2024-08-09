@@ -6,9 +6,7 @@ const dataController=async(req,res,next)=>{
 
     const {name,designation,resume,video_resume,image,tagline,description,intro_video,summary,profiles,yearsOfExperience,}=basics
 
-    const {title,description:{contactDes},tagline:{contacTagline},email,phone,address,fbLink,linkedinLink,gitHubLink,contactList}=contact
-
-    const {name:contactName,email:contactEmail,message}=contactList
+    const {title,description:{contactDes},tagline:{contacTagline},email,phone,address,fbLink,linkedinLink,gitHubLink}=contact
 
     try{
         const data=await Data.create({
@@ -37,8 +35,7 @@ const dataController=async(req,res,next)=>{
                 address:address,
                 fbLink:fbLink,
                 linkedinLink:linkedinLink,
-                gitHubLink:gitHubLink,
-                contactList:contactList
+                gitHubLink:gitHubLink
             },
             testimonials:testimonials,
             certifications:certifications,
@@ -51,32 +48,8 @@ const dataController=async(req,res,next)=>{
     }
 }
 const getDataController=async(req,res,next)=>{
-    const data=await Data.find()
+    const data=await Data.find().populate('contactList')
     res.status(200).json(data)
 }
-const addContactListController=async(req,res,next)=>{
-    const id=req.params.id
-    const {name,email,message}=req.body
-    const updatedData={
-        name:name,
-        email:email,
-        message:message
-    }
-    try{
-        const data=await Data.findById(id)
-        console.log(data)
-        if(data){
-            data.contact.contactList.push(updatedData)
 
-            await data.save()
-            res.status(200).json({message:"added new contactList"})
-        }else{
-            res.status(404).json({message:'not added'})
-        }
-        res.send(data)
-    }catch{
-        next(error)
-    }
-}
-
-module.exports={dataController,getDataController,addContactListController}
+module.exports={dataController,getDataController}

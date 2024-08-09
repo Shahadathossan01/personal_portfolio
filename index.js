@@ -6,9 +6,13 @@ const port=3000
 const app=express()
 app.use(express.json())
 const routes=require('./routes')
+const Blog = require('./models/Blog')
+const Comment = require('./models/Comment')
+const ContactList = require('./models/ContactList')
+const Data = require('./models/Data')
+
 app.use(cors())
 app.use(routes)
-
 
 app.use((err,req,res,next)=>{
     const message=err.message?err.message:'Server Error Occurred'
