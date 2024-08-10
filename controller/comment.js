@@ -35,5 +35,24 @@ const updateCommentController=async(req,res,next)=>{
         next(error)
     }
 }
+const getCommentController=async(req,res,next)=>{
+    try{
+        const comments=await Comment.find()
+        res.status(200).json(comments)
+    }catch{
+        next(error)
+    }
+}
+const deleteCommentController=async(req,res,next)=>{
+    const id=req.params.id
+    try{
+        const comment=await Comment.deleteOne({
+            _id:id
+        })
+        res.status(200).json(comment)
+    }catch{
+        next(error)
+    }
+}
 
-module.exports={createCommentController,updateCommentController}
+module.exports={createCommentController,updateCommentController,getCommentController,deleteCommentController}
