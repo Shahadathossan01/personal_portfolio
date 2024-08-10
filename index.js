@@ -2,7 +2,7 @@ const express=require('express')
 const cors=require('cors')
 const connectDB = require('./db')
 const error = require('./utils/error')
-const port=3000
+const port=process.env.PORT || 3000;
 const app=express()
 app.use(express.json())
 const routes=require('./routes')
@@ -26,7 +26,7 @@ app.use((err,req,res,next)=>{
 connectDB(process.env.MONGO_URL)
 .then(()=>{
     console.log('Database Connected')
-    app.listen(process.env.PORT,()=>{
+    app.listen(port,()=>{
         console.log('server is running')
     })
 })
