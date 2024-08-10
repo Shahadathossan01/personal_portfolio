@@ -16,10 +16,6 @@ require('dotenv').config()
 app.use(cors())
 app.use(routes)
 
-app.get('/user',(req,res)=>{
-    res.send('running')
-})
-
 app.use((err,req,res,next)=>{
     const message=err.message?err.message:'Server Error Occurred'
     const status=err.status?err.status:500
