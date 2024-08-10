@@ -5,6 +5,6 @@ const router=require('express').Router()
 router.post('/:blogId',createCommentController)
 router.patch('/:id',updateCommentController)
 router.get('',getCommentController)
-router.delete('/comment/:id',deleteCommentController)
+router.delete('/:id',deleteCommentController)
 
 module.exports=router

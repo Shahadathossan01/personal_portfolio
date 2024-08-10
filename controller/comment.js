@@ -45,10 +45,9 @@ const getCommentController=async(req,res,next)=>{
 }
 const deleteCommentController=async(req,res,next)=>{
     const id=req.params.id
+    console.log(id)
     try{
-        const comment=await Comment.deleteOne({
-            _id:id
-        })
+        const comment=await Comment.findById(id).deleteOne({_id: id})
         res.status(200).json(comment)
     }catch{
         next(error)
