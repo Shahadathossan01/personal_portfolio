@@ -1,10 +1,8 @@
 const { dataController, getDataController} = require('../controller/data')
-const { blogCreateController } = require('../controller/blog')
 
 const router=require('express').Router()
 
-router.post('/data',dataController)
-router.get('/data',getDataController)
-router.post('/blog',blogCreateController)
+router.post('',dataController)
+router.get('',getDataController)
 
 module.exports=router
