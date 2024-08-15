@@ -13,9 +13,9 @@ const dataSchema=new Schema({
         intro_video:String,
         summary:String,
         yearsOfExperience:Number,
-        profiles:[],
-        
-
+        age:Number,
+        residence:String,
+        city:String,
     },
     education:[
         {
@@ -28,10 +28,11 @@ const dataSchema=new Schema({
     skills:[
         {
             name:String,
-            logo:String,
+            percentage:Number,
             category:String
         }
     ],
+    otherSkills:[],
     projects:[
         {
             name:String,
@@ -43,15 +44,18 @@ const dataSchema=new Schema({
         }
     ],
     contact:{
-        title:String,
-        description:String,
         tagline:String,
         email:String,
         phone:Number,
         address:String,
+        mapUrl:String,
+        title:String,
         fbLink:String,
         linkedinLink:String,
         gitHubLink:String,
+        instraLink:String,
+        twitterLink:String,
+        youtubeLink:String
     },
     contactList:[{
         type:Schema.Types.ObjectId,
@@ -59,13 +63,6 @@ const dataSchema=new Schema({
     }],
     testimonials:[],
     certifications:[],
-    page_not_found:{
-        title:String,
-        short:String,
-        description:String,
-        image:String
-    }
-
 })
 
 const Data=model('Data',dataSchema)
